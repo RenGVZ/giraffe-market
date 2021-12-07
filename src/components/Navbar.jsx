@@ -28,7 +28,6 @@ const SearchContainer = styled.div`
 
 const Input = styled.input`
   border: none;
-
 `
 
 const Left = styled.div`
@@ -65,7 +64,7 @@ const Navbar = () => {
           <Language>EN</Language>
           <SearchContainer>
             <Input/>
-            <SearchIcon style={{color: 'gray', 'font-size': 16}}/>
+            <SearchIcon style={{color: 'gray', 'fontSize': 16}}/>
           </SearchContainer>
         </Left>
         <Center>

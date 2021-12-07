@@ -2,9 +2,10 @@ import { React, useState } from 'react'
 import styled from 'styled-components'
 import ArrowLeftOutlinedIcon from '@mui/icons-material/ArrowLeftOutlined';
 import ArrowRightOutlinedIcon from '@mui/icons-material/ArrowRightOutlined';
+import { sliderItems } from '../data';
 
 const Container = styled.div`
-  width: 100%auto;
+  width: 100%;
   height: 100vh;
   display: flex;
   position: relative;
@@ -33,7 +34,8 @@ const Arrow = styled.div`
 const Wrapper = styled.div`
   height: 100%;
   display: flex;
-  transform: translateX(0vw);
+  transform: translateX(${props => props.slideIndex * -100}vw);
+  transition: all 1.5s ease;
 `
 
 const Slide = styled.div`
@@ -78,48 +80,31 @@ const Button = styled.button`
 const Slider = () => {
   const [slideIndex, setSlideIndex] = useState(0);
   const handleClick = (direction) => {
-
+    if (direction === 'left') {
+      setSlideIndex(slideIndex > 0 ? slideIndex-1 : 2)
+    } else {
+      setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0)
+    }
   }
+
   return (
     <Container>
       <Arrow direction="left" onClick={() => handleClick('left')}>
         <ArrowLeftOutlinedIcon></ArrowLeftOutlinedIcon>
       </Arrow>
-      <Wrapper>
-
-        <Slide bg="f5fafd">
-          <ImgContainer>
-              <Image src="https://images.unsplash.com/photo-1589465885857-44edb59bbff2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"/>
-          </ImgContainer>
-          <InfoContainer>
-            <Title>SUMMER SALE</Title>
-            <Description>DON'T COMPROMISE ON STYLE! GET A FLAT 30% OFF ON NEW ARRIVALS</Description>
-            <Button>SHOP NOW</Button>
-          </InfoContainer>
-        </Slide>
-
-        <Slide bg="fcf1ed">
-          <ImgContainer>
-              <Image src="https://images.unsplash.com/photo-1589465885857-44edb59bbff2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"/>
-          </ImgContainer>
-          <InfoContainer>
-            <Title>WINTER SALE</Title>
-            <Description>DON'T COMPROMISE ON STYLE! GET A FLAT 30% OFF ON NEW ARRIVALS</Description>
-            <Button>SHOP NOW</Button>
-          </InfoContainer>
-        </Slide>
-
-        <Slide bg="fbf04f">
-          <ImgContainer>
-              <Image src="https://images.unsplash.com/photo-1589465885857-44edb59bbff2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"/>
-          </ImgContainer>
-          <InfoContainer>
-            <Title>FALL SALE</Title>
-            <Description>DON'T COMPROMISE ON STYLE! GET A FLAT 30% OFF ON NEW ARRIVALS</Description>
-            <Button>SHOP NOW</Button>
-          </InfoContainer>
-        </Slide>
-
+      <Wrapper slideIndex={slideIndex}>
+        {sliderItems.map((item, i) => (
+          <Slide bg={item.bg} key={i}>
+            <ImgContainer>
+              <Image src={item.img}/>
+            </ImgContainer>
+            <InfoContainer>
+              <Title>{item.title}</Title>
+              <Description>{item.desc}</Description>
+              <Button>SHOP NOW</Button>
+            </InfoContainer>
+          </Slide>
+        ))}
       </Wrapper>
       <Arrow direction="right" onClick={() => handleClick('right')}>
         <ArrowRightOutlinedIcon></ArrowRightOutlinedIcon>
