@@ -3,9 +3,11 @@ import styled from 'styled-components'
 import SearchIcon from '@mui/icons-material/Search';
 import Badge from '@mui/material/Badge';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import { mobile } from '../responsive';
 
 const Container = styled.div`
   height: 60px;
+  ${mobile({ height: "50px"})}
 `
 
 const Wrapper = styled.div`
@@ -13,10 +15,12 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  ${mobile({ padding: "10px 0px"})}
 `
 const Language = styled.span`
   font-size: 14px;
   cursor: pointer;
+  ${mobile({ display: "none"})}
 `
 const SearchContainer = styled.div`
   border: 0.5px solid lightgray;
@@ -28,6 +32,7 @@ const SearchContainer = styled.div`
 
 const Input = styled.input`
   border: none;
+  ${mobile({ width: "50px"})}
 `
 
 const Left = styled.div`
