@@ -7,9 +7,11 @@ import PinterestIcon from '@mui/icons-material/Pinterest';
 import MapIcon from '@mui/icons-material/Map';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
+import { mobile } from '../responsive'
 
 const Container = styled.div`
   display: flex;
+  ${mobile({ flexDirection: "column"})}
 `
 const Left = styled.div`
   flex: 1;
@@ -39,10 +41,12 @@ const SocialIcon = styled.div`
 const Center = styled.div`
   flex: 1;
   padding: 20px;
+  ${mobile({ display: "none"})}
 `
 const Right = styled.div`
   flex: 1;
   padding: 20px;
+  ${mobile({ backgroundColor: "#fff8f8"})}
 `
 
 const Title = styled.h3`
